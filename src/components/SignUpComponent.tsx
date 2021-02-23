@@ -1,46 +1,49 @@
-import React, {useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import * as emailValidator from 'email-validator'
 import { MsgStates, MsgProps } from './CustomMsg'
-import clientApi from "../api";
+import clientApi from '../api'
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2),
+const useStyles = makeStyles(
+    (theme: Theme) => ({
+        root: {
+            width: '100%',
+            '& > * + *': {
+                marginTop: theme.spacing(2),
+            },
         },
-    },
 
-    signUpButton: {
-        marginRight: 0,
-        marginTop: '3%',
-        width: '80%',
-        backgroundColor: '#303f9f',
-        fontSize: '150%',
-        borderRadius: 10,
-        '&:hover': {
-            backgroundColor: '#3949ab',
+        signUpButton: {
+            marginRight: 0,
+            marginTop: '3%',
+            width: '80%',
+            backgroundColor: '#303f9f',
+            fontSize: '150%',
+            borderRadius: 10,
+            '&:hover': {
+                backgroundColor: '#3949ab',
+            },
+            '&:disabled': {
+                backgroundColor: '#c5cae9',
+                color: '#424242',
+            },
         },
-        '&:disabled': {
-            backgroundColor: '#c5cae9',
-            color: '#424242',
+
+        inputField: {
+            width: '80%',
+            marginTop: '2%',
+            backgroundColor: '#fff',
+            marginRight: 0,
         },
-    },
 
-    inputField: {
-        width: '80%',
-        marginTop: '2%',
-        backgroundColor: '#fff',
-        marginRight: 0,
-    },
-
-    helperText: {
-        color: '#f44336;',
-    },
-}), {index: 1})
+        helperText: {
+            color: '#f44336;',
+        },
+    }),
+    { index: 1 }
+)
 
 interface Errors {
     email: boolean
@@ -48,7 +51,10 @@ interface Errors {
     passwordConfirm: boolean
 }
 
-export const SignUpComponent = (Props: { handleLoginOpen: () => any; setMsg: React.Dispatch<React.SetStateAction<MsgProps>> }) => {
+export const SignUpComponent = (Props: {
+    handleLoginOpen: () => any
+    setMsg: React.Dispatch<React.SetStateAction<MsgProps>>
+}) => {
     const styles = useStyles()
     const passwordRef = useRef<HTMLInputElement>(null)
     const confirmPasswordRef = useRef<HTMLInputElement>(null)
@@ -68,7 +74,7 @@ export const SignUpComponent = (Props: { handleLoginOpen: () => any; setMsg: Rea
     const signUpHandler = async () => {
         setLoading(true)
         try {
-            const message = await clientApi.signUp({...form})
+            const message = await clientApi.signUp({ ...form })
             Props.setMsg({ text: message, type: MsgStates.Success, isOpen: true })
             Props.handleLoginOpen()
         } catch (err) {
@@ -120,7 +126,8 @@ export const SignUpComponent = (Props: { handleLoginOpen: () => any; setMsg: Rea
                 inputRef={passwordRef}
                 fullWidth
                 onKeyDown={(event) => {
-                    if (event.key === 'Enter' && confirmPasswordRef.current) confirmPasswordRef.current.focus()
+                    if (event.key === 'Enter' && confirmPasswordRef.current)
+                        confirmPasswordRef.current.focus()
                 }}
                 name="password"
                 onChange={(event) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {UserData} from "../models/UserData";
+import { UserData } from '../models/UserData'
 
 interface IAuthContext {
     userData: UserData
@@ -12,5 +12,5 @@ export const AuthContext = React.createContext<IAuthContext>({
     userData: {},
     setUserData: undefined,
     isAuthenticated: false,
-    setIsAuthenticated: undefined
+    setIsAuthenticated: undefined,
 })

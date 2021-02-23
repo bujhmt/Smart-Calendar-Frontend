@@ -1,18 +1,18 @@
-import React, {useEffect, useState, useCallback} from 'react'
-import {MuiPickersUtilsProvider} from '@material-ui/pickers'
+import React, { useEffect, useState, useCallback } from 'react'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
-import {BrowserRouter} from 'react-router-dom'
-import {useRoutes} from './routes'
-import {useAuth} from './hooks/auth.hook'
-import {AuthContext} from './context/AuthContext'
-import {NavBar} from './components/NavBar'
-import {ThemeProvider} from '@material-ui/core/styles'
-import {MuiTheme} from './themes/MuiTheme'
+import { BrowserRouter } from 'react-router-dom'
+import { useRoutes } from './routes'
+import { useAuth } from './hooks/auth.hook'
+import { AuthContext } from './context/AuthContext'
+import { NavBar } from './components/NavBar'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { MuiTheme } from './themes/MuiTheme'
 import clientApi from './api/index'
-import {CustomLoading} from "./components/CustomLoading";
+import { CustomLoading } from './components/CustomLoading'
 
 function App() {
-    const {userData, setUserData, isAuthenticated, setIsAuthenticated} = useAuth()
+    const { userData, setUserData, isAuthenticated, setIsAuthenticated } = useAuth()
     const [loading, setLoading] = useState(true)
     const routes: JSX.Element = useRoutes(isAuthenticated)
 
@@ -25,7 +25,7 @@ function App() {
 
     useEffect(() => {
         initializeClientAPI()
-    },[initializeClientAPI])
+    }, [initializeClientAPI])
 
     return (
         <ThemeProvider theme={MuiTheme}>
@@ -35,15 +35,17 @@ function App() {
                         userData,
                         setUserData,
                         setIsAuthenticated,
-                        isAuthenticated
+                        isAuthenticated,
                     }}
                 >
-                    {loading ? <CustomLoading size={200}/> :
+                    {loading ? (
+                        <CustomLoading size={200} />
+                    ) : (
                         <BrowserRouter>
-                            {isAuthenticated && <NavBar/>}
+                            {isAuthenticated && <NavBar />}
                             <div className="container">{routes}</div>
                         </BrowserRouter>
-                    }
+                    )}
                 </AuthContext.Provider>
             </MuiPickersUtilsProvider>
         </ThemeProvider>

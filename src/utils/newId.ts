@@ -1,6 +1,6 @@
-let lastId = 0;
+let lastId = 0
 
-export function newId (prefix='id') {
-    lastId++;
-    return `${prefix}${lastId}`;
+export function newId(prefix = 'id') {
+    lastId++
+    return `${prefix}${lastId}`
 }

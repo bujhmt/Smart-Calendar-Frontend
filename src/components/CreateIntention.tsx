@@ -14,33 +14,37 @@ import Slider from '@material-ui/core/Slider'
 import ChipInput from 'material-ui-chip-input'
 import moment from 'moment'
 import { Intention } from '../models/Intention'
-import {MsgStates, MsgProps } from './CustomMsg'
-import clientApi from "../api";
+import { MsgStates, MsgProps } from './CustomMsg'
+import clientApi from '../api'
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        button: {
-            margin: theme.spacing(1),
-            color: '#fff',
-        },
-        submitButton: { color: '#303f9f' },
+const useStyles = makeStyles(
+    (theme: Theme) =>
+        createStyles({
+            button: {
+                margin: theme.spacing(1),
+                color: '#fff',
+            },
+            submitButton: { color: '#303f9f' },
 
-        fieldWrapper: {
-            width: '100%',
-            marginTop: 20,
-            display: 'flex',
-            flexDirection: 'column',
-        },
+            fieldWrapper: {
+                width: '100%',
+                marginTop: 20,
+                display: 'flex',
+                flexDirection: 'column',
+            },
 
-        dateWrapper: {
-            display: 'flex',
-            justifyContent: 'space-evenly',
-        },
-    }), {index: 1}
+            dateWrapper: {
+                display: 'flex',
+                justifyContent: 'space-evenly',
+            },
+        }),
+    { index: 1 }
 )
 
-export const CreateIntentionDialog = (Props: { refreshPageFunc?: () => any, setMsg?: React.Dispatch<React.SetStateAction<MsgProps>>}) => {
-
+export const CreateIntentionDialog = (Props: {
+    refreshPageFunc?: () => any
+    setMsg?: React.Dispatch<React.SetStateAction<MsgProps>>
+}) => {
     const styles = useStyles()
     const [open, setOpen] = useState(false)
     const [titleErr, setTitleErr] = useState(false)
@@ -101,10 +105,10 @@ export const CreateIntentionDialog = (Props: { refreshPageFunc?: () => any, setM
             }
             const message = await clientApi.createIntention(newIntention)
             if (Props.setMsg) Props.setMsg({ text: message, type: MsgStates.Success, isOpen: true })
-    
+
             setOpen(false)
-            if (Props.refreshPageFunc) await Props.refreshPageFunc()    
-        } catch(err) {
+            if (Props.refreshPageFunc) await Props.refreshPageFunc()
+        } catch (err) {
             if (Props.setMsg) Props.setMsg({ text: err.message, type: MsgStates.Error, isOpen: true })
         }
     }

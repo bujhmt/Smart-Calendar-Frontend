@@ -7,14 +7,17 @@ const Alert = (props: AlertProps | { children: string }) => {
     return <MuiAlert variant="filled" {...props} />
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2),
+const useStyles = makeStyles(
+    (theme: Theme) => ({
+        root: {
+            width: '100%',
+            '& > * + *': {
+                marginTop: theme.spacing(2),
+            },
         },
-    },
-}), {index: 1})
+    }),
+    { index: 1 }
+)
 
 export interface MsgProps {
     type: MsgStates

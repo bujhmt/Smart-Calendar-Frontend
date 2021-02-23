@@ -9,27 +9,30 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import moment from 'moment'
 import { MsgStates, MsgProps } from './CustomMsg'
-import clientApi from "../api";
+import clientApi from '../api'
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: '95%',
-        marginTop: 15,
-        marginRight: 10,
-        marginLeft: 10,
-    },
+const useStyles = makeStyles(
+    {
+        root: {
+            maxWidth: '95%',
+            marginTop: 15,
+            marginRight: 10,
+            marginLeft: 10,
+        },
 
-    intentionTitleWrapper: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        intentionTitleWrapper: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
     },
-}, {index: 1})
+    { index: 1 }
+)
 
 interface IntentionComponentProps {
-    intention: Intention,
-    refreshPageFunc?: () => any,
-    setMsg?:  React.Dispatch<React.SetStateAction<MsgProps>>
+    intention: Intention
+    refreshPageFunc?: () => any
+    setMsg?: React.Dispatch<React.SetStateAction<MsgProps>>
 }
 
 export const IntentionComponent = (Props: IntentionComponentProps) => {
@@ -41,12 +44,11 @@ export const IntentionComponent = (Props: IntentionComponentProps) => {
 
         try {
             const message = await clientApi.deleteIntentionById(String(Props.intention._id))
-            if (Props.setMsg) Props.setMsg({text: message, type: MsgStates.Success, isOpen: true})
+            if (Props.setMsg) Props.setMsg({ text: message, type: MsgStates.Success, isOpen: true })
         } catch (err) {
             if (Props.setMsg) Props.setMsg({ text: err.message, type: MsgStates.Success, isOpen: true })
         }
-        if (Props.refreshPageFunc) 
-            Props.refreshPageFunc()
+        if (Props.refreshPageFunc) Props.refreshPageFunc()
         setIsDeleteDisabled(false)
     }
 

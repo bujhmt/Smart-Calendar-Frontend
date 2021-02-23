@@ -1,20 +1,23 @@
-import React, {useCallback, useContext, useState} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {MsgStates, MsgProps} from './CustomMsg'
-import GoogleLogin, {GoogleLoginResponse, GoogleLoginResponseOffline} from 'react-google-login'
-import clientApi from "../api";
-import {AuthContext} from "../context/AuthContext";
+import React, { useCallback, useContext, useState } from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { MsgStates, MsgProps } from './CustomMsg'
+import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login'
+import clientApi from '../api'
+import { AuthContext } from '../context/AuthContext'
 
-const useStyles = makeStyles((theme: Theme) => ({
-    googleSignInButton: {
-        marginTop: '10%',
-    },
-}), {index: 1})
+const useStyles = makeStyles(
+    (theme: Theme) => ({
+        googleSignInButton: {
+            marginTop: '10%',
+        },
+    }),
+    { index: 1 }
+)
 
 export const GoogleSignIn = (Props: { setMsg?: React.Dispatch<React.SetStateAction<MsgProps>> }) => {
     const styles = useStyles()
     const [loading, setLoading] = useState<boolean>(false)
-    const {setIsAuthenticated, setUserData} = useContext(AuthContext)
+    const { setIsAuthenticated, setUserData } = useContext(AuthContext)
 
     const SignIn = useCallback(
         async (profile: any) => {
@@ -32,7 +35,7 @@ export const GoogleSignIn = (Props: { setMsg?: React.Dispatch<React.SetStateActi
                     password: profile.getId(),
                 })
                 setIsAuthenticated(true)
-                setUserData({...clientApi.userData})
+                setUserData({ ...clientApi.userData })
             } catch (err) {
                 console.log(err)
                 if (Props.setMsg)

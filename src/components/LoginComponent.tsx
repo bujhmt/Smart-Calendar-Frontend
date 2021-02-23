@@ -1,5 +1,5 @@
-import React, {useState, useRef, useContext, useCallback} from 'react'
-import {MsgProps, MsgStates} from './CustomMsg'
+import React, { useState, useRef, useContext, useCallback } from 'react'
+import { MsgProps, MsgStates } from './CustomMsg'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import TextField from '@material-ui/core/TextField'
@@ -7,42 +7,45 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
 import * as emailValidator from 'email-validator'
-import clientApi from "../api";
-import {AuthContext} from "../context/AuthContext";
+import clientApi from '../api'
+import { AuthContext } from '../context/AuthContext'
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2),
+const useStyles = makeStyles(
+    (theme: Theme) => ({
+        root: {
+            width: '100%',
+            '& > * + *': {
+                marginTop: theme.spacing(2),
+            },
         },
-    },
-    signInButton: {
-        marginRight: 0,
-        marginTop: '3%',
-        width: '80%',
-        backgroundColor: '#ef6c00',
-        fontSize: '150%',
-        borderRadius: 10,
-        '&:hover': {
-            backgroundColor: '#fb8c00',
+        signInButton: {
+            marginRight: 0,
+            marginTop: '3%',
+            width: '80%',
+            backgroundColor: '#ef6c00',
+            fontSize: '150%',
+            borderRadius: 10,
+            '&:hover': {
+                backgroundColor: '#fb8c00',
+            },
+            '&:disabled': {
+                backgroundColor: '#fdd835',
+                color: '#424242',
+            },
         },
-        '&:disabled': {
-            backgroundColor: '#fdd835',
-            color: '#424242',
-        },
-    },
 
-    inputField: {
-        width: '80%',
-        marginTop: '2%',
-        marginRight: 0,
-    },
+        inputField: {
+            width: '80%',
+            marginTop: '2%',
+            marginRight: 0,
+        },
 
-    helperText: {
-        color: '#f44336;',
-    },
-}), {index: 1})
+        helperText: {
+            color: '#f44336;',
+        },
+    }),
+    { index: 1 }
+)
 
 interface Errors {
     email: boolean
@@ -55,7 +58,7 @@ export const LoginComponent = (Props: { setMsg: React.Dispatch<React.SetStateAct
     const [errors, setErrors] = useState<Errors>({ email: false, password: false })
     const styles = useStyles()
     const [loading, setLoading] = useState<boolean>(false)
-    const {setIsAuthenticated, setUserData} = useContext(AuthContext)
+    const { setIsAuthenticated, setUserData } = useContext(AuthContext)
 
     const [form, setForm] = useState({
         email: '',
@@ -70,15 +73,15 @@ export const LoginComponent = (Props: { setMsg: React.Dispatch<React.SetStateAct
     const loginHandler = useCallback(async () => {
         setLoading(true)
         try {
-            await clientApi.login({...form})
+            await clientApi.login({ ...form })
             setIsAuthenticated(true)
-            setUserData({...clientApi.userData})
+            setUserData({ ...clientApi.userData })
         } catch (err) {
             console.log(err)
             Props.setMsg({ text: 'Incorrect email or password', type: MsgStates.Error, isOpen: true })
         }
         setLoading(false)
-    },[setIsAuthenticated, Props, form, setUserData])
+    }, [setIsAuthenticated, Props, form, setUserData])
 
     const isDisabledLoginButton = () => {
         return (
