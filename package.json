@@ -20,6 +20,7 @@
         "fingerprintjs2": "^2.1.2",
         "material-ui-chip-input": "^1.1.0",
         "moment": "^2.29.1",
+        "node-sass": "^4.0.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-google-login": "^5.2.2",
@@ -31,7 +32,7 @@
     },
     "scripts": {
         "format": "prettier --write \"src/**/*.tsx\" \"src/**/*.ts\"",
-        "dev": "react-scripts start",
+        "dev": "rm -rf tsconfig.json && react-scripts start",
         "build": "rm -rf tsconfig.json && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",

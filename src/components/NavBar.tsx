@@ -59,7 +59,7 @@ export const useStyles = makeStyles(
                 height: theme.spacing(5),
             },
         }),
-    { index: 1 }
+    { index: 1 },
 )
 
 export const NavBar = () => {
@@ -76,11 +76,11 @@ export const NavBar = () => {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar position='static'>
             <Toolbar>
                 <Button
                     className={clsx(styles.menuButton, styles.button)}
-                    color="primary"
+                    color='primary'
                     onClick={() => {
                         history.push('/main')
                     }}
@@ -92,7 +92,7 @@ export const NavBar = () => {
                     <Button
                         className={styles.barItem}
                         classes={{ textPrimary: styles.button }}
-                        color="primary"
+                        color='primary'
                         onClick={() => {
                             history.push('/intentions')
                         }}
@@ -104,10 +104,10 @@ export const NavBar = () => {
                             <Button
                                 className={styles.barItem}
                                 classes={{ textPrimary: styles.button }}
-                                color="primary"
+                                color='primary'
                                 endIcon={
                                     <Avatar
-                                        alt="User Avatar"
+                                        alt='User Avatar'
                                         src={userData.avaUrl}
                                         className={styles.avatar}
                                     />
@@ -119,12 +119,21 @@ export const NavBar = () => {
                         items={[
                             <Button
                                 className={styles.menuButton}
-                                color="primary"
+                                color='primary'
                                 onClick={() => {
                                     history.push('/profile')
                                 }}
                             >
                                 Profile
+                            </Button>,
+                            <Button
+                                className={styles.menuButton}
+                                color='primary'
+                                onClick={() => {
+                                    history.push('/contacts')
+                                }}
+                            >
+                                Contacts
                             </Button>,
                             <CustomDialog
                                 externalButtonStyle={clsx(styles.menuButton, styles.logoutButton)}

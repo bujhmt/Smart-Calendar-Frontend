@@ -1,9 +1,10 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { IntentionsPage } from './pages/IntentionsPage'
-import { MainPage } from './pages/MainPage'
-import { ProfilePage } from './pages/ProfilePage'
-import { AuthPage } from './pages/AuthPage'
+import { IntentionsPage } from './pages/Intentions/IntentionsPage'
+import { MainPage } from './pages/Main/MainPage'
+import { ProfilePage } from './pages/Profiles/ProfilePage'
+import { AuthPage } from './pages/AuthPage/AuthPage'
+import { ContactUsPage } from './pages/Contacts/ContactUs'
 
 export const useRoutes = (isAuthencticated: boolean) => {
     if (isAuthencticated) {
@@ -12,23 +13,26 @@ export const useRoutes = (isAuthencticated: boolean) => {
                 <Route path="/intentions" exact>
                     <IntentionsPage />
                 </Route>
-                <Route path="/main" exact>
+                <Route path="/" exact>
                     <MainPage />
                 </Route>
                 <Route path="/profile" exact>
                     <ProfilePage />
                 </Route>
-                <Redirect to="/intentions" />
+                <Route path="/contacts" exact>
+                    <ContactUsPage />
+                </Route>
+                <Redirect to="/" />
             </Switch>
         )
     }
 
     return (
         <Switch>
-            <Route path="/" exact>
+            <Route path="/login" exact>
                 <AuthPage />
             </Route>
-            <Redirect to="/" />
+            <Redirect to="/login" />
         </Switch>
     )
 }

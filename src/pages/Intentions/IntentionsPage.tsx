@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import moment from 'moment'
-import { CustomAccordion } from '../components/CustomAccordion'
-import { CreateIntentionDialog } from '../components/CreateIntention'
-import { Intention } from '../models/Intention'
+import { CustomAccordion } from '../../components/CustomAccordion'
+import { CreateIntentionDialog } from '../../components/CreateIntention'
+import { Intention } from '../../models/Intention'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { CustomMsg, MsgStates, MsgProps } from '../components/CustomMsg'
-import { IntentionComponent } from '../components/IntentionComponent'
-import clientApi from '../api'
+import { CustomMsg, MsgStates, MsgProps } from '../../components/CustomMsg'
+import { IntentionComponent } from '../../components/IntentionComponent'
+import clientApi from '../../api'
 
 const useStyles = makeStyles(
     (theme: Theme) =>

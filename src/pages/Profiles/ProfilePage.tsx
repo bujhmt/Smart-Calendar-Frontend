@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import CustomTabs from '../components/CustomTabs'
-import { ProfileForm } from '../components/ProfileForm'
-import { CustomMsg, MsgProps, MsgStates } from '../components/CustomMsg'
+import CustomTabs from '../../components/CustomTabs'
+import { ProfileForm } from '../../components/ProfileForm'
+import { CustomMsg, MsgProps, MsgStates } from '../../components/CustomMsg'
 
 export const ProfilePage = () => {
     const [msg, setMsg] = useState<MsgProps>({

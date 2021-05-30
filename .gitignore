@@ -40,5 +40,4 @@ packages/react-devtools-scheduling-profiler/dist
 
 #custom
 package-lock.json
-.env
 build

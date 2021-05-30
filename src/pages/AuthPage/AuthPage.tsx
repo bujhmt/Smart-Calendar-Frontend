@@ -5,18 +5,21 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { LoginComponent } from '../components/LoginComponent'
-import { SignUpComponent } from '../components/SignUpComponent'
-import { CustomMsg, MsgStates, MsgProps } from '../components/CustomMsg'
-import { GoogleSignIn } from '../components/GoogleSignIn'
+import { LoginComponent } from '../../components/LoginComponent'
+import { SignUpComponent } from '../../components/SignUpComponent'
+import { CustomMsg, MsgStates, MsgProps } from '../../components/CustomMsg'
+import { GoogleSignIn } from '../../components/GoogleSignIn'
 
 const useStyles = makeStyles(
     {
         root: {
-            maxWidth: '30%',
+            maxWidth: 450,
             margin: '5% auto',
             backgroundColor: '#fff',
             borderRadius: 20,
+            ['@media (max-width:450px)']: {
+                margin: '10% 5% 0 5%',
+            }
         },
 
         logo: {
